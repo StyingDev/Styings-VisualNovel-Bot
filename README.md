@@ -1,6 +1,6 @@
 # VNDB Discord Bot 🎮📚 
 
-A Discord bot that interacts with the VNDB API to search for visual novels and characters, providing detailed information in clean and informative embeds. The bot includes a variety of commands to enhance your server's experience with visual novel related content.
+A Discord bot that interacts with the VNDB API to search for visual novels and characters, providing detailed information in informative embeds. The bot includes a variety of commands to enhance your server's experience with visual novel related content.
 [Invite the Bot!](https://discord.com/oauth2/authorize?client_id=1231996105366048888&permissions=277025441856&integration_type=0&scope=bot)
 
 ## Features
