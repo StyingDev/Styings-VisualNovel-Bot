@@ -29,28 +29,28 @@ Fetch a random visual novel and display its information.
 
 ## Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/StyingDev/Styings-VisualNovel-Bot.git
-   cd Styings-VisualNovel-Bot
-   ```
+1. Clone the repository:
 
-2. **Set Up the Environment**:
-   - Create a `.env` file in the root directory.
-   - Add your Discord Bot Token:
-     ```
-     TOKEN=your_discord_bot_token
-     ```
+  ```bash
+  git clone https://github.com/StyingDev/Styings-VisualNovel-Bot.git
+  ```
 
-3. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. Navigate to the project directory:
+  ```bash
+  cd Styings-VisualNovel-Bot
+  ```
 
-4. **Run the Bot**:
-   ```bash
-   python main.py
-   ```
+3. Install the required Python packages:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+4. Create a '.env' file in the project directory and add your Discord Bot Token:
+
+  ```bash
+  TOKEN=your_discord_bot_token_here
+  ```
 
 ## Environment Variables
 
