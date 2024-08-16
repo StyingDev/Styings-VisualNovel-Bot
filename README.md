@@ -14,6 +14,7 @@ A feature-rich Discord bot that interacts with the VNDB API to search for visual
 
 ### Character Information
 - `/character`: Search for a character by name. Returns a dropdown menu of results from which you can select one to view detailed information.
+  
   Usage: /character `name:<character name>`
 
 ### Visual Novel Information
