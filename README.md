@@ -12,17 +12,17 @@ A feature-rich Discord bot that interacts with the VNDB API to search for visual
 
 ## Commands
 
-### `/vn`
+### `/vn`:
 Search for a visual novel by name. Returns a dropdown menu of results from which you can select one to view detailed information.
 
 **Usage**: `/vn name:<visual novel name>`
 
-### `/character`
+### `/character`:
 Search for a character by name. Returns a dropdown menu of results from which you can select one to view detailed information.
 
 **Usage**: `/character name:<character name>`
 
-### `/randomvn`
+### `/randomvn`:
 Fetch a random visual novel and display its information.
 
 **Usage**: `/randomvn`
