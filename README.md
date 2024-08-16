@@ -65,4 +65,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgments
 
 - This bot utilizes the [VNDB API](https://vndb.org/d11) for fetching visual novel and character data.
-- Built using [discord.py](https://discordpy.readthedocs.io/) library.
+- Built using [Discord.py](https://discordpy.readthedocs.io/) library.
