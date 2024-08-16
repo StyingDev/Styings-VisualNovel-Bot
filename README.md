@@ -3,6 +3,13 @@
 A Discord bot that interacts with the VNDB API to search for visual novels and characters, providing detailed information in informative embeds. The bot includes a variety of commands to enhance your server's experience with visual novel related content.
 [Invite the Bot!](https://discord.com/oauth2/authorize?client_id=1231996105366048888&permissions=277025441856&integration_type=0&scope=bot)
 
+
+## Credits
+
+- **Stying** - Creator & Developer
+  - Contact me through my Discord: @Stying
+  - [Linktree](https://linktr.ee/stying)
+
 ## Features
 
 - **Visual Novel Search (`/vn`)**: Search for visual novels by name. Select from a list of results and receive detailed information, including the original name, alternate names, playtime, languages, platforms, related media, and more.
