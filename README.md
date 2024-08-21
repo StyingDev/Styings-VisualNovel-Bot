@@ -33,6 +33,11 @@ A Discord bot that interacts with the VNDB API to search for visual novels and c
 ### RandomVN
 - `/randomvn`: Fetch a random visual novel and display its information.
 
+### Cover
+- `/cover` Fetch the cover image of selected visual novel.
+  
+  Usage: /cover `name:<visual novel name>`
+
 ## Installation
 
 1. Clone the repository:
