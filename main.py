@@ -80,6 +80,8 @@ LANGUAGE_TO_FLAG = {
     "haw": "🇺🇸",  # Hawaiian
 }
 
+EMBED_COLOR = 0x757e8a
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="d!", intents=intents)
 
@@ -271,7 +273,8 @@ async def vn_search(interaction: discord.Interaction, name: str):
                         embed = discord.Embed(
                             title=vn_details['title'],
                             url=f"https://vndb.org/{selected_id}",
-                            description=vn_details['description']
+                            description=vn_details['description'],
+                            color=EMBED_COLOR
                         )
                         embed.set_thumbnail(url=vn_details['cover'])
                         embed.add_field(name="🏷️ __Original Name:__", value=truncate_text(vn_details['original_title']), inline=False)
@@ -346,7 +349,8 @@ async def character_search(interaction: discord.Interaction, name: str):
                         embed = discord.Embed(
                             title=char_details['name'],
                             url=f"https://vndb.org/{selected_id}",
-                            description=char_details['description']
+                            description=char_details['description'],
+                            color=EMBED_COLOR
                         )
                         embed.set_thumbnail(url=char_details['image_url'])
                         embed.add_field(name="🏷️ __Original Name:__", value=truncate_text(char_details['original_name']), inline=False)
@@ -411,7 +415,8 @@ async def random_vn(interaction: discord.Interaction):
                 embed = discord.Embed(
                     title=vn_details['title'],
                     url=f"https://vndb.org/{random_id}",
-                    description=vn_details['description']
+                    description=vn_details['description'],
+                    color=EMBED_COLOR
                 )
                 embed.set_thumbnail(url=vn_details['cover'])
                 embed.add_field(name="🏷️ __Original Name:__", value=truncate_text(vn_details['original_title']), inline=False)
@@ -431,12 +436,66 @@ async def random_vn(interaction: discord.Interaction):
     else:
         await interaction.followup.send("Error fetching the highest VN ID. Please try again later.", ephemeral=False)
 
+@bot.tree.command(name="cover", description="Search for a Visual Novel cover in VNDB")
+async def cover_search(interaction: discord.Interaction, name: str):
+    search_query = {
+        "filters": ["search", "=", name],
+        "fields": "id,title,image.url,aliases"
+    }
 
+    try:
+        response = requests.post(f"{VNDB_API_URL}/vn", json=search_query)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        data = response.json()
+        results = data.get('results', [])
 
+        if results:
+            options = []
+            for result in results:
+                title = result['title']
+                truncated_title = title[:90] + "..." if len(title) > 90 else title
+
+                aliases = result.get('aliases', [])
+                description = ", ".join(aliases) if aliases else "N/A"
+                if len(description) > 100:
+                    description = description[:97] + "..."
+
+                options.append(
+                    discord.SelectOption(
+                        label=truncated_title,
+                        description=description,
+                        value=result['id']
+                    )
+                )
+
+            class CoverDropdown(discord.ui.Select):
+                def __init__(self):
+                    super().__init__(placeholder="Select a visual novel...", min_values=1, max_values=1, options=options)
+
+                async def callback(self, interaction: discord.Interaction):
+                    selected_id = self.values[0]
+                    vn_details = fetch_vn_details(selected_id)
+
+                    if vn_details:
+                        embed = discord.Embed(
+                            title=vn_details['title'],
+                            url=f"https://vndb.org/{selected_id}",
+                            color=EMBED_COLOR
+                        )
+                        embed.set_image(url=vn_details['cover'])
+
+                        await interaction.response.send_message(embed=embed)
+                    else:
+                        await interaction.response.send_message("No details found for the selected visual novel.", ephemeral=True)
+
+            view = discord.ui.View()
+            view.add_item(CoverDropdown())
+
+            await interaction.response.send_message(f"{len(results)} results found. Select one from the list below:", view=view, ephemeral=False)
+        else:
+            await interaction.response.send_message("No results found.", ephemeral=False)
+    except requests.exceptions.RequestException as e:
+        # Handle any request-related errors
+        await interaction.response.send_message(f"Error searching for visual novels: {e}", ephemeral=True)
 
 bot.run(TOKEN)
-
-
-
-
-
