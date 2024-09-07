@@ -83,7 +83,7 @@ LANGUAGE_TO_FLAG = {
 EMBED_COLOR = 0x757e8a
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="d!", intents=intents)
+bot = commands.Bot(command_prefix="D!", intents=intents)
 
 @bot.event
 async def on_ready():
