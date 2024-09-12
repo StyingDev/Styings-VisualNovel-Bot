@@ -1,6 +1,7 @@
 import requests
 import discord
 from discord.ext import commands
+from discord import app_commands
 from dotenv import load_dotenv
 import random
 import os
@@ -229,6 +230,9 @@ def fetch_character_details(char_id):
     else:
         return None
 
+
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @bot.tree.command(name="vn", description="Search for a Visual Novel in VNDB")
 async def vn_search(interaction: discord.Interaction, name: str):
     search_query = {
@@ -300,6 +304,9 @@ async def vn_search(interaction: discord.Interaction, name: str):
     else:
         await interaction.response.send_message(f"Error searching for visual novels. Please try again later.", ephemeral=False)
 
+
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @bot.tree.command(name="character", description="Search for a character in VNDB")
 async def character_search(interaction: discord.Interaction, name: str):
     search_query = {
@@ -392,6 +399,8 @@ class VNButtonPanel(discord.ui.View):
         self.add_item(discord.ui.Button(label="More Info", url=f"https://vndb.org/{self.vn_id}"))
 
 
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @bot.tree.command(name="randomvn", description="Fetch a random visual novel")
 async def random_vn(interaction: discord.Interaction):
     # Acknowledge the interaction first
@@ -436,6 +445,9 @@ async def random_vn(interaction: discord.Interaction):
     else:
         await interaction.followup.send("Error fetching the highest VN ID. Please try again later.", ephemeral=False)
 
+
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @bot.tree.command(name="cover", description="Search for a Visual Novel cover in VNDB")
 async def cover_search(interaction: discord.Interaction, name: str):
     search_query = {
